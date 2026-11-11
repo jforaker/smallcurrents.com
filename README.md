@@ -4,13 +4,14 @@ Static Astro + TypeScript homepage, reproduced from the Fable “Flow (Paper)”
 
 ## Develop and build
 
-Use Node.js 24.13 or newer.
+Use Node.js 24.13 or newer. Corepack uses the Yarn version pinned in `package.json`.
 
 ```sh
-npm ci
-npm run dev
-npm run build
-npm run preview
+corepack enable
+yarn install --immutable
+yarn dev
+yarn build
+yarn preview
 ```
 
 Production files are generated in `dist/`. `public/CNAME` is copied into that output.
