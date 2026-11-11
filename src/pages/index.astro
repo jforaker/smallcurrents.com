@@ -21,6 +21,22 @@ import '../styles/global.css';
   <body>
 <main>
 <div class="page">
+<svg class="hero-accent" viewBox="0 0 480 480" fill="none" aria-hidden="true" focusable="false">
+<defs>
+<radialGradient id="accent-wash" cx="35%" cy="25%" r="80%">
+<stop stop-color="#334a94" stop-opacity=".25" />
+<stop offset="1" stop-color="#334a94" stop-opacity="0" />
+</radialGradient>
+<filter id="accent-grain" x="0" y="0" width="100%" height="100%">
+<feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch" />
+<feColorMatrix type="saturate" values="0" />
+<feComposite in2="SourceGraphic" operator="in" />
+<feBlend in="SourceGraphic" mode="soft-light" />
+</filter>
+</defs>
+<circle cx="345" cy="242" r="178" fill="url(#accent-wash)" filter="url(#accent-grain)" />
+<circle cx="300" cy="140" r="222" stroke="#334a94" stroke-width="1" />
+</svg>
 
 <div class="container">
 <header class="site-header">
@@ -35,7 +51,7 @@ import '../styles/global.css';
 </header>
 
 <section id="top" class="hero">
-<h1 class="hero-title"><span class="hero-line">Less friction.</span><span class="hero-line">More flow.</span></h1>
+<h1 class="hero-title"><span class="hero-line">Less friction.</span><span class="hero-line">More <em class="hero-flow">flow.</em></span></h1>
 <div class="hero-details">
 <div class="hero-copy">
 <p class="hero-description">We build thoughtful software and simple tools that make everyday work a little easier.</p>
@@ -51,7 +67,7 @@ import '../styles/global.css';
 <div class="container">
 
 <section id="approach" class="approach">
-<h2 class="section-label">Approach</h2>
+<h2 class="section-label"><span class="section-number">01</span>Approach</h2>
 <div class="approach-copy">
 <p class="approach-intro">Small Currents is a small independent studio for useful software.</p>
 <p class="approach-description">We’re interested in the quietly annoying parts of everyday work: the repetitive tasks, clunky workflows, and bits of friction that software can smooth out.</p>
@@ -60,7 +76,7 @@ import '../styles/global.css';
 </section>
 
 <section id="make" class="make">
-<h2 class="section-label">What we make</h2>
+<h2 class="section-label"><span class="section-number">02</span>What we make</h2>
 <ul class="offerings">
 <li class="sc-row offering">Small software products</li>
 <li class="sc-row offering">Internal tools</li>
@@ -71,7 +87,7 @@ import '../styles/global.css';
 
 </div>
 
-<section id="contact" class="sc-night contact">
+<section id="contact" class="contact" data-theme="night">
 <div class="container">
 <div class="contact-content">
 <h2 class="contact-title">Have something that feels more complicated than it should?</h2>
