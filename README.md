@@ -1,6 +1,6 @@
 # Small Currents
 
-Static Astro + TypeScript homepage, reproduced from the Fable “Flow (Paper)” HTML export. Plain CSS; no client JavaScript. The current-line SVG in `public/assets/` is copied byte for byte from the export. Font families and weights use the export’s Google Fonts stylesheet.
+Static Astro + TypeScript homepage, reproduced from the Fable “Flow (Paper)” HTML export. Plain CSS; no client JavaScript. The current-line SVG in `public/assets/` uses refined Bézier curves and 1.25px strokes, preserving the export’s composition and blue dot. Font families and weights use the export’s Google Fonts stylesheet.
 
 ## Develop and build
 
