@@ -1,5 +1,12 @@
 ---
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import '../styles/global.css';
+
+const currentArtwork = readFileSync(
+  join(process.cwd(), 'public/assets/bac9912c0ae7793005f09d99a5b4fe83.svg'),
+  'utf8',
+);
 ---
 <!doctype html>
 <html lang="en">
@@ -69,7 +76,7 @@ import '../styles/global.css';
 </section>
 </div>
 
-<img src="/assets/bac9912c0ae7793005f09d99a5b4fe83.svg" alt="" class="current-artwork">
+<Fragment set:html={currentArtwork} />
 
 <div class="container">
 

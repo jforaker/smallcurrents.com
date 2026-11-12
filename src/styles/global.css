@@ -279,7 +279,17 @@ a:focus-visible {
   display: block;
   width: 100%;
   height: clamp(220px, 30vw, 460px);
-  object-fit: cover;
+}
+.current-artwork .current-lines {
+  opacity: 1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .current-artwork .current-lines {
+    opacity: 0.1;
+  }
+}
+:root[data-theme="night"] .current-artwork .current-lines {
+  opacity: 0.1;
 }
 .approach {
   padding: clamp(72px, 10vw, 152px) 0;
