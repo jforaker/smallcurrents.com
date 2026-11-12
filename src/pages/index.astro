@@ -13,7 +13,14 @@ import '../styles/global.css';
     <meta property="og:title" content="Small Currents — Less friction. More flow." />
     <meta property="og:description" content="We build thoughtful software and simple tools that make everyday work a little easier." />
     <meta property="og:url" content="https://smallcurrents.com/" />
-    <meta name="theme-color" content="#F6F5F1" />
+    <meta name="theme-color" content="#F6F5F1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
+    <script is:inline>
+      const savedTheme = localStorage.getItem('small-currents-theme');
+      if (savedTheme === 'paper' || savedTheme === 'night') {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&amp;family=Cutive+Mono&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
@@ -44,9 +51,9 @@ import '../styles/global.css';
 <span class="brand-name">Small Currents</span>
 <span class="brand-dot"></span>
 </a>
-<nav aria-label="Main navigation" class="navigation">
-<a href="#approach" class="nav-link">Approach</a>
-<a href="#contact" class="nav-link">Contact</a>
+<nav class="theme-status" aria-label="Color theme">
+<button type="button" class="theme-option theme-option-paper" data-theme-choice="paper"><span class="theme-indicator" aria-hidden="true"></span>Paper</button>
+<button type="button" class="theme-option theme-option-night" data-theme-choice="night"><span class="theme-indicator" aria-hidden="true"></span>Night</button>
 </nav>
 </header>
 
@@ -87,7 +94,7 @@ import '../styles/global.css';
 
 </div>
 
-<section id="contact" class="contact" data-theme="night">
+<section id="contact" class="contact">
 <div class="container">
 <div class="contact-content">
 <h2 class="contact-title">Have something that feels more complicated than it should?</h2>
@@ -104,5 +111,28 @@ import '../styles/global.css';
 
 </div>
 </main>
+<script>
+  const themeButtons = document.querySelectorAll<HTMLButtonElement>('[data-theme-choice]');
+  const preferredTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'paper';
+  const activeTheme = () => document.documentElement.dataset.theme || preferredTheme();
+  const updateThemeButtons = () => {
+    const theme = activeTheme();
+    themeButtons.forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.themeChoice === theme));
+    });
+  };
+
+  themeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const theme = button.dataset.themeChoice;
+      if (!theme) return;
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem('small-currents-theme', theme);
+      updateThemeButtons();
+    });
+  });
+
+  updateThemeButtons();
+</script>
   </body>
 </html>

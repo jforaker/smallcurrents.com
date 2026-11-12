@@ -34,7 +34,7 @@
  *
  * Source: small-currents-design/tokens/tokens.json.
  */
-@import 'small-currents-design/css';
+@import 'small-currents-design/auto.css';
 
 html {
   scroll-behavior: smooth;
@@ -140,16 +140,84 @@ a:focus-visible {
   border-radius: 50%;
   background: var(--survey);
 }
-.navigation {
-  display: flex;
-  gap: 32px;
-  font-size: 16px;
-}
-.nav-link {
+.theme-status {
   display: flex;
   align-items: center;
+  gap: 26px;
   min-height: 44px;
-  text-decoration: none;
+  color: var(--label);
+  font-family: 'Cutive Mono', 'Courier New', monospace;
+  font-size: 16px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+.theme-option {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--label);
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  white-space: nowrap;
+}
+.theme-indicator {
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+.theme-option-paper {
+  color: var(--ink);
+}
+.theme-option-paper .theme-indicator {
+  border-color: var(--survey);
+  background: var(--survey);
+}
+.theme-option:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  .theme-option-paper {
+    color: var(--label);
+  }
+  .theme-option-paper .theme-indicator {
+    border-color: currentColor;
+    background: transparent;
+  }
+  .theme-option-night {
+    color: var(--ink);
+  }
+  .theme-option-night .theme-indicator {
+    border-color: var(--survey);
+    background: var(--survey);
+  }
+}
+:root[data-theme="paper"] .theme-option-paper,
+:root[data-theme="night"] .theme-option-night {
+  color: var(--ink);
+}
+:root[data-theme="paper"] .theme-option-paper .theme-indicator,
+:root[data-theme="night"] .theme-option-night .theme-indicator {
+  border-color: var(--survey);
+  background: var(--survey);
+}
+:root[data-theme="paper"] .theme-option-night,
+:root[data-theme="night"] .theme-option-paper {
+  color: var(--label);
+}
+:root[data-theme="paper"] .theme-option-night .theme-indicator,
+:root[data-theme="night"] .theme-option-paper .theme-indicator {
+  border-color: currentColor;
+  background: transparent;
 }
 .hero {
   padding: clamp(64px, 10vw, 152px) 0 clamp(48px, 6vw, 88px);

@@ -2514,12 +2514,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"small-currents-design@github:jforaker/small-currents-design#v1.8.1":
-  version: 1.8.1
-  resolution: "small-currents-design@https://github.com/jforaker/small-currents-design.git#commit=22d97f0d1e01664b75fb400c56b63711954faaba"
+"small-currents-design@github:jforaker/small-currents-design#v1.8.2":
+  version: 1.8.2
+  resolution: "small-currents-design@https://github.com/jforaker/small-currents-design.git#commit=0109f74318e87bdb00e9296ee65de61f448d4afb"
   peerDependencies:
     react-native: "*"
-  checksum: 10c0/b0fa686c58af8313e2f2c960c149b7a77a871f9f7bd3ec8914694650824bbf5048ad6d04acb8b6230eee417d6918276a0862b9ffd5f128708dda1982d8b06236
+  checksum: 10c0/95c2dd788bdbea400b35b9813680cff5821fa480302754fd5681353ac7cd6d250d92f599129ec772262a50e780969dfc751dbb9ce80b05e297ac0c5e97234156
   languageName: node
   linkType: hard
 
@@ -2528,7 +2528,7 @@ __metadata:
   resolution: "small-currents@workspace:."
   dependencies:
     astro: "npm:7.3.8"
-    small-currents-design: "github:jforaker/small-currents-design#v1.8.1"
+    small-currents-design: "github:jforaker/small-currents-design#v1.8.2"
   languageName: unknown
   linkType: soft
 
