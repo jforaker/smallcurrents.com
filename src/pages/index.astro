@@ -58,10 +58,18 @@ const currentArtwork = readFileSync(
 <span class="brand-name">Small Currents</span>
 <span class="brand-dot"></span>
 </a>
-<nav class="theme-status" aria-label="Color theme">
-<button type="button" class="theme-option theme-option-paper" data-theme-choice="paper"><span class="theme-indicator" aria-hidden="true"></span>Paper</button>
-<button type="button" class="theme-option theme-option-night" data-theme-choice="night"><span class="theme-indicator" aria-hidden="true"></span>Night</button>
-</nav>
+<button type="button" class="theme-toggle" aria-label="Current theme: Paper. Switch to Night" title="Switch theme">
+<svg class="theme-icon theme-icon-paper" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+<path transform="translate(1.5 0)" d="M11.5 17a5.5 5.5 0 0 1 11 0" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" />
+<path transform="translate(1.5 0)" d="M17 5v3M9.5 7.2l1.8 2.6M24.5 7.2l-1.8 2.6M5.8 11.8l2.7 1.5M28.2 11.8l-2.7 1.5M5.5 17h2.5M26 17h2.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" />
+<path d="M3 23c3 3 6.5.4 10-2 3.2-2.2 6.1-3.9 8.4-3.1 1.8.6 2.1 2.3 1.1 2.8-.8.4-1.1-.7-2.2-.5-1.4.2-2 1.6-1.5 2.6 1.2 2.5 5.2.9 8.1.9 1.1 0 1.9.2 2.6.6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+<svg class="theme-icon theme-icon-night" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+<path d="M23.5 21.5A9 9 0 0 1 12 10a9 9 0 1 0 11.5 11.5Z" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M21 5.5v4M19 7.5h4M26 12v3M24.5 13.5h3" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+<circle cx="17" cy="14" r=".8" fill="currentColor" />
+</svg>
+</button>
 </header>
 
 <section id="top" class="hero">
@@ -83,19 +91,19 @@ const currentArtwork = readFileSync(
 <section id="approach" class="approach">
 <h2 class="section-label"><span class="section-number">01</span>Approach</h2>
 <div class="approach-copy">
-<p class="approach-intro">Small Currents is a small independent studio for useful software.</p>
-<p class="approach-description">We’re interested in the quietly annoying parts of everyday work: the repetitive tasks, clunky workflows, and bits of friction that software can smooth out.</p>
-<p class="approach-description">Sometimes the answer is a small product. Sometimes it’s a focused tool. Either way, the goal is the same: make things simpler, clearer, and easier to use.</p>
+<p class="approach-intro">Small Currents is an independent studio for useful software.</p>
+<p class="approach-description">We look for opportunities to make work feel more manageable—with thoughtful tools that remove friction and make room for what matters.</p>
+<p class="approach-description">Sometimes that means a small product. Sometimes it’s a focused tool. Either way, we want to make useful things that feel simple to use.</p>
 </div>
 </section>
 
 <section id="make" class="make">
-<h2 class="section-label"><span class="section-number">02</span>What we make</h2>
+<h2 class="section-label"><span class="section-number">02</span>What we build</h2>
 <ul class="offerings">
 <li class="sc-row offering">Small software products</li>
 <li class="sc-row offering">Internal tools</li>
-<li class="sc-row offering">Focused workflow utilities</li>
-<li class="sc-row offering">Lightweight systems for real-world businesses</li>
+<li class="sc-row offering">Tools for everyday workflows</li>
+<li class="sc-row offering">Lightweight business systems</li>
 </ul>
 </section>
 
@@ -119,27 +127,23 @@ const currentArtwork = readFileSync(
 </div>
 </main>
 <script>
-  const themeButtons = document.querySelectorAll<HTMLButtonElement>('[data-theme-choice]');
-  const preferredTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'paper';
-  const activeTheme = () => document.documentElement.dataset.theme || preferredTheme();
-  const updateThemeButtons = () => {
-    const theme = activeTheme();
-    themeButtons.forEach((button) => {
-      button.setAttribute('aria-pressed', String(button.dataset.themeChoice === theme));
-    });
+  const themeToggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
+  const colorPreference = window.matchMedia('(prefers-color-scheme: dark)');
+  const activeTheme = () => document.documentElement.dataset.theme || (colorPreference.matches ? 'night' : 'paper');
+  const updateThemeToggle = () => {
+    const isNight = activeTheme() === 'night';
+    themeToggle?.setAttribute('aria-label', `Current theme: ${isNight ? 'Night' : 'Paper'}. Switch to ${isNight ? 'Paper' : 'Night'}`);
   };
 
-  themeButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const theme = button.dataset.themeChoice;
-      if (!theme) return;
-      document.documentElement.dataset.theme = theme;
-      localStorage.setItem('small-currents-theme', theme);
-      updateThemeButtons();
-    });
+  themeToggle?.addEventListener('click', () => {
+    const theme = activeTheme() === 'paper' ? 'night' : 'paper';
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('small-currents-theme', theme);
+    updateThemeToggle();
   });
 
-  updateThemeButtons();
+  colorPreference.addEventListener('change', updateThemeToggle);
+  updateThemeToggle();
 </script>
   </body>
 </html>
